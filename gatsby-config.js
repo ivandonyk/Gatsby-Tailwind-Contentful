@@ -10,5 +10,6 @@ module.exports = {
         spaceId: "tdpyozytknjz",
       },
     },
+    "gatsby-plugin-postcss",
   ],
 };
