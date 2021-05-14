@@ -35,6 +35,7 @@ export const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                     color={colors[i]}
                     text={item.text}
                     number={item.number}
+                    key={item.id}
                   />
                 </div>
               ))}

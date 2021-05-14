@@ -10,6 +10,10 @@ module.exports = {
           2: "#525668",
         },
         "ar-orange": "#F68720",
+        "ar-orange": {
+          DEFAULT: "#F68720",
+          dark: "#A95A33",
+        },
         "ar-fountain-blue": "#5CC2BD",
         "ar-picton-blue": "#38B9E2",
         "ar-turquoise": "#38E2A5",
