@@ -14,10 +14,10 @@ const Header: React.FC<headerProps> = ({ title, subtitle }) => {
   });
   return (
     <div className="">
-      <div className="text-5xl pt-16 font-semibold text-center">
+      <h1 className="text-5xl pt-16 font-semibold text-center">
         {titleWithStyle.map((str) => str)}
-      </div>
-      <div className="text-3xl font-light text-center pt-4">{subtitle}</div>
+      </h1>
+      <h2 className="text-3xl font-light text-center pt-4">{subtitle}</h2>
       <div className="pt-10 md:w-1/2 mx-auto">
         <BookDemo />
       </div>

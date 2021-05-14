@@ -311,6 +311,14 @@ export type ContentfulReference = {
 export type ContentfulAsset = ContentfulReference & Node & {
   contentful_id: Scalars['String'];
   id: Scalars['ID'];
+  spaceId?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+  file?: Maybe<ContentfulAssetFile>;
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  node_locale?: Maybe<Scalars['String']>;
+  sys?: Maybe<ContentfulAssetSys>;
   fixed?: Maybe<ContentfulFixed>;
   fluid?: Maybe<ContentfulFluid>;
   gatsbyImageData?: Maybe<Scalars['JSON']>;
@@ -318,6 +326,22 @@ export type ContentfulAsset = ContentfulReference & Node & {
   parent?: Maybe<Node>;
   children: Array<Node>;
   internal: Internal;
+};
+
+
+export type ContentfulAssetCreatedAtArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulAssetUpdatedAtArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
 };
 
 
@@ -371,6 +395,28 @@ export type ContentfulAssetResizeArgs = {
   toFormat?: Maybe<ContentfulImageFormat>;
   cropFocus?: Maybe<ContentfulImageCropFocus>;
   background?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulAssetFile = {
+  url?: Maybe<Scalars['String']>;
+  details?: Maybe<ContentfulAssetFileDetails>;
+  fileName?: Maybe<Scalars['String']>;
+  contentType?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulAssetFileDetails = {
+  size?: Maybe<Scalars['Int']>;
+  image?: Maybe<ContentfulAssetFileDetailsImage>;
+};
+
+export type ContentfulAssetFileDetailsImage = {
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
+};
+
+export type ContentfulAssetSys = {
+  type?: Maybe<Scalars['String']>;
+  revision?: Maybe<Scalars['Int']>;
 };
 
 export type ContentfulFixed = {
@@ -454,6 +500,8 @@ export type ContentfulHomePage = ContentfulReference & ContentfulEntry & Node & 
   contentful_id: Scalars['String'];
   id: Scalars['ID'];
   node_locale: Scalars['String'];
+  companyLogoHeading?: Maybe<Scalars['String']>;
+  companyLogos?: Maybe<Array<Maybe<ContentfulAsset>>>;
   header?: Maybe<ContentfulHomePageHeaderJsonNode>;
   connectionItems?: Maybe<Array<Maybe<ContentfulHomePageConnectionItemsJsonNode>>>;
   spaceId?: Maybe<Scalars['String']>;
@@ -539,6 +587,7 @@ export type ContentfulContentType = Node & {
   children: Array<Node>;
   internal: Internal;
   name?: Maybe<Scalars['String']>;
+  displayField?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   sys?: Maybe<ContentfulContentTypeSys>;
 };
@@ -840,6 +889,14 @@ export type QueryAllContentfulEntryArgs = {
 export type QueryContentfulAssetArgs = {
   contentful_id?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
+  spaceId?: Maybe<StringQueryOperatorInput>;
+  createdAt?: Maybe<DateQueryOperatorInput>;
+  updatedAt?: Maybe<DateQueryOperatorInput>;
+  file?: Maybe<ContentfulAssetFileFilterInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  node_locale?: Maybe<StringQueryOperatorInput>;
+  sys?: Maybe<ContentfulAssetSysFilterInput>;
   fixed?: Maybe<ContentfulFixedFilterInput>;
   fluid?: Maybe<ContentfulFluidFilterInput>;
   gatsbyImageData?: Maybe<JsonQueryOperatorInput>;
@@ -862,6 +919,8 @@ export type QueryContentfulHomePageArgs = {
   contentful_id?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
+  companyLogoHeading?: Maybe<StringQueryOperatorInput>;
+  companyLogos?: Maybe<ContentfulAssetFilterListInput>;
   header?: Maybe<ContentfulHomePageHeaderJsonNodeFilterInput>;
   connectionItems?: Maybe<ContentfulHomePageConnectionItemsJsonNodeFilterListInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
@@ -930,6 +989,7 @@ export type QueryContentfulContentTypeArgs = {
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   name?: Maybe<StringQueryOperatorInput>;
+  displayField?: Maybe<StringQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
   sys?: Maybe<ContentfulContentTypeSysFilterInput>;
 };
@@ -2320,6 +2380,28 @@ export type ContentfulEntrySortInput = {
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
 };
 
+export type ContentfulAssetFileFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  details?: Maybe<ContentfulAssetFileDetailsFilterInput>;
+  fileName?: Maybe<StringQueryOperatorInput>;
+  contentType?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulAssetFileDetailsFilterInput = {
+  size?: Maybe<IntQueryOperatorInput>;
+  image?: Maybe<ContentfulAssetFileDetailsImageFilterInput>;
+};
+
+export type ContentfulAssetFileDetailsImageFilterInput = {
+  width?: Maybe<IntQueryOperatorInput>;
+  height?: Maybe<IntQueryOperatorInput>;
+};
+
+export type ContentfulAssetSysFilterInput = {
+  type?: Maybe<StringQueryOperatorInput>;
+  revision?: Maybe<IntQueryOperatorInput>;
+};
+
 export type ContentfulFixedFilterInput = {
   base64?: Maybe<StringQueryOperatorInput>;
   tracedSVG?: Maybe<StringQueryOperatorInput>;
@@ -2409,6 +2491,20 @@ export type ContentfulAssetEdge = {
 export type ContentfulAssetFieldsEnum =
   | 'contentful_id'
   | 'id'
+  | 'spaceId'
+  | 'createdAt'
+  | 'updatedAt'
+  | 'file___url'
+  | 'file___details___size'
+  | 'file___details___image___width'
+  | 'file___details___image___height'
+  | 'file___fileName'
+  | 'file___contentType'
+  | 'title'
+  | 'description'
+  | 'node_locale'
+  | 'sys___type'
+  | 'sys___revision'
   | 'fixed___base64'
   | 'fixed___tracedSVG'
   | 'fixed___aspectRatio'
@@ -2531,6 +2627,14 @@ export type ContentfulAssetGroupConnection = {
 export type ContentfulAssetFilterInput = {
   contentful_id?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
+  spaceId?: Maybe<StringQueryOperatorInput>;
+  createdAt?: Maybe<DateQueryOperatorInput>;
+  updatedAt?: Maybe<DateQueryOperatorInput>;
+  file?: Maybe<ContentfulAssetFileFilterInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  node_locale?: Maybe<StringQueryOperatorInput>;
+  sys?: Maybe<ContentfulAssetSysFilterInput>;
   fixed?: Maybe<ContentfulFixedFilterInput>;
   fluid?: Maybe<ContentfulFluidFilterInput>;
   gatsbyImageData?: Maybe<JsonQueryOperatorInput>;
@@ -2543,6 +2647,10 @@ export type ContentfulAssetFilterInput = {
 export type ContentfulAssetSortInput = {
   fields?: Maybe<Array<Maybe<ContentfulAssetFieldsEnum>>>;
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
+export type ContentfulAssetFilterListInput = {
+  elemMatch?: Maybe<ContentfulAssetFilterInput>;
 };
 
 export type ContentfulHomePageHeaderJsonNodeFilterInput = {
@@ -2646,6 +2754,83 @@ export type ContentfulHomePageFieldsEnum =
   | 'contentful_id'
   | 'id'
   | 'node_locale'
+  | 'companyLogoHeading'
+  | 'companyLogos'
+  | 'companyLogos___contentful_id'
+  | 'companyLogos___id'
+  | 'companyLogos___spaceId'
+  | 'companyLogos___createdAt'
+  | 'companyLogos___updatedAt'
+  | 'companyLogos___file___url'
+  | 'companyLogos___file___details___size'
+  | 'companyLogos___file___fileName'
+  | 'companyLogos___file___contentType'
+  | 'companyLogos___title'
+  | 'companyLogos___description'
+  | 'companyLogos___node_locale'
+  | 'companyLogos___sys___type'
+  | 'companyLogos___sys___revision'
+  | 'companyLogos___fixed___base64'
+  | 'companyLogos___fixed___tracedSVG'
+  | 'companyLogos___fixed___aspectRatio'
+  | 'companyLogos___fixed___width'
+  | 'companyLogos___fixed___height'
+  | 'companyLogos___fixed___src'
+  | 'companyLogos___fixed___srcSet'
+  | 'companyLogos___fixed___srcWebp'
+  | 'companyLogos___fixed___srcSetWebp'
+  | 'companyLogos___fluid___base64'
+  | 'companyLogos___fluid___tracedSVG'
+  | 'companyLogos___fluid___aspectRatio'
+  | 'companyLogos___fluid___src'
+  | 'companyLogos___fluid___srcSet'
+  | 'companyLogos___fluid___srcWebp'
+  | 'companyLogos___fluid___srcSetWebp'
+  | 'companyLogos___fluid___sizes'
+  | 'companyLogos___gatsbyImageData'
+  | 'companyLogos___resize___base64'
+  | 'companyLogos___resize___tracedSVG'
+  | 'companyLogos___resize___src'
+  | 'companyLogos___resize___width'
+  | 'companyLogos___resize___height'
+  | 'companyLogos___resize___aspectRatio'
+  | 'companyLogos___parent___id'
+  | 'companyLogos___parent___parent___id'
+  | 'companyLogos___parent___parent___children'
+  | 'companyLogos___parent___children'
+  | 'companyLogos___parent___children___id'
+  | 'companyLogos___parent___children___children'
+  | 'companyLogos___parent___internal___content'
+  | 'companyLogos___parent___internal___contentDigest'
+  | 'companyLogos___parent___internal___description'
+  | 'companyLogos___parent___internal___fieldOwners'
+  | 'companyLogos___parent___internal___ignoreType'
+  | 'companyLogos___parent___internal___mediaType'
+  | 'companyLogos___parent___internal___owner'
+  | 'companyLogos___parent___internal___type'
+  | 'companyLogos___children'
+  | 'companyLogos___children___id'
+  | 'companyLogos___children___parent___id'
+  | 'companyLogos___children___parent___children'
+  | 'companyLogos___children___children'
+  | 'companyLogos___children___children___id'
+  | 'companyLogos___children___children___children'
+  | 'companyLogos___children___internal___content'
+  | 'companyLogos___children___internal___contentDigest'
+  | 'companyLogos___children___internal___description'
+  | 'companyLogos___children___internal___fieldOwners'
+  | 'companyLogos___children___internal___ignoreType'
+  | 'companyLogos___children___internal___mediaType'
+  | 'companyLogos___children___internal___owner'
+  | 'companyLogos___children___internal___type'
+  | 'companyLogos___internal___content'
+  | 'companyLogos___internal___contentDigest'
+  | 'companyLogos___internal___description'
+  | 'companyLogos___internal___fieldOwners'
+  | 'companyLogos___internal___ignoreType'
+  | 'companyLogos___internal___mediaType'
+  | 'companyLogos___internal___owner'
+  | 'companyLogos___internal___type'
   | 'header___id'
   | 'header___parent___id'
   | 'header___parent___parent___id'
@@ -3002,6 +3187,8 @@ export type ContentfulHomePageFilterInput = {
   contentful_id?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
+  companyLogoHeading?: Maybe<StringQueryOperatorInput>;
+  companyLogos?: Maybe<ContentfulAssetFilterListInput>;
   header?: Maybe<ContentfulHomePageHeaderJsonNodeFilterInput>;
   connectionItems?: Maybe<ContentfulHomePageConnectionItemsJsonNodeFilterListInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
@@ -3459,6 +3646,7 @@ export type ContentfulContentTypeFieldsEnum =
   | 'internal___owner'
   | 'internal___type'
   | 'name'
+  | 'displayField'
   | 'description'
   | 'sys___type';
 
@@ -3477,6 +3665,7 @@ export type ContentfulContentTypeFilterInput = {
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   name?: Maybe<StringQueryOperatorInput>;
+  displayField?: Maybe<StringQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
   sys?: Maybe<ContentfulContentTypeSysFilterInput>;
 };
@@ -3833,7 +4022,10 @@ export type SitePluginSortInput = {
 export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Unnamed_1_Query = { contentfulHomePage?: Maybe<{ header?: Maybe<Pick<ContentfulHomePageHeaderJsonNode, 'title' | 'subitle'>>, connectionItems?: Maybe<Array<Maybe<Pick<ContentfulHomePageConnectionItemsJsonNode, 'id' | 'number' | 'text'>>>> }> };
+export type Unnamed_1_Query = { contentfulHomePage?: Maybe<(
+    Pick<ContentfulHomePage, 'companyLogoHeading'>
+    & { header?: Maybe<Pick<ContentfulHomePageHeaderJsonNode, 'title' | 'subitle'>>, connectionItems?: Maybe<Array<Maybe<Pick<ContentfulHomePageConnectionItemsJsonNode, 'id' | 'number' | 'text'>>>>, companyLogos?: Maybe<Array<Maybe<Pick<ContentfulAsset, 'title' | 'gatsbyImageData'>>>> }
+  )> };
 
 export type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

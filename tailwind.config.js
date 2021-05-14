@@ -23,6 +23,9 @@ module.exports = {
       fontFamily: {
         sans: ["Comfortaa", "sans-serif"],
       },
+      backgroundImage: {
+        "connection-2": "url(../images/connections-2.svg)",
+      },
     },
   },
   variants: {
