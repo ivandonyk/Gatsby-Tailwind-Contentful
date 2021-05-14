@@ -16,6 +16,9 @@ module.exports = {
         "ar-mantis": "#82CA69",
         "ar-wattle": "#C7DB4E",
       },
+      fontFamily: {
+        sans: ["Comfortaa", "sans-serif"],
+      },
     },
   },
   variants: {
