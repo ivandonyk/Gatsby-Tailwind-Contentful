@@ -3,6 +3,8 @@ module.exports = {
     title: "accuranker",
   },
   plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-image`,
     {
       resolve: "gatsby-source-contentful",
       options: {
@@ -11,5 +13,6 @@ module.exports = {
       },
     },
     "gatsby-plugin-postcss",
+    "gatsby-plugin-graphql-codegen",
   ],
 };

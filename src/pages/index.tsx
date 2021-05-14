@@ -4,10 +4,13 @@ import { graphql } from "gatsby";
 
 import HomepageHeader from "../components/HomepageHeader";
 import Navbar from "../components/Navbar";
+import { ContentfulHomePage } from "../../graphql-types";
 
 import Connections1 from "../images/connections-1.svg"; // todo: fix this,it works but typescript doesn't like it
 
-export const IndexPage: React.FC<PageProps> = ({ data }) => {
+export const IndexPage: React.FC<PageProps<ContentfulHomePage>> = ({
+  data,
+}) => {
   return (
     <main className="bg-ar-dark">
       <section className="container mx-auto text-white px-4">
