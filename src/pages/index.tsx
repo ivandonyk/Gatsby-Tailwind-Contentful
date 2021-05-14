@@ -22,7 +22,7 @@ export const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   const colors = ["picton-blue", "turquoise", "mantis", "wattle"];
 
   return (
-    <main className="bg-ar-dark">
+    <main className="bg-ar-dark lines">
       <section className="container mx-auto text-white px-4">
         <Navbar />
         <HomepageHeader title={header.title} subtitle={header.subitle} />

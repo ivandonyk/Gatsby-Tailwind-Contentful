@@ -13,7 +13,7 @@ const Header: React.FC<headerProps> = ({ title, subtitle }) => {
     else return `${str} `;
   });
   return (
-    <div className="">
+    <div className="bg-ar-dark">
       <h1 className="text-5xl pt-16 font-semibold text-center">
         {titleWithStyle.map((str) => str)}
       </h1>
