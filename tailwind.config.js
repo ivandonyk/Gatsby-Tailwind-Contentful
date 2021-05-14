@@ -11,7 +11,7 @@ module.exports = {
         },
         "ar-orange": "#F68720",
         "ar-fountain-blue": "#5CC2BD",
-        "ar-picton-blue": "#5CC2BD",
+        "ar-picton-blue": "#38B9E2",
         "ar-turquoise": "#38E2A5",
         "ar-mantis": "#82CA69",
         "ar-wattle": "#C7DB4E",

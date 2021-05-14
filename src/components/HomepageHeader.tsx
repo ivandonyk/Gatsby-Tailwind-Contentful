@@ -6,7 +6,7 @@ interface headerProps {}
 const Header: React.FC<headerProps> = ({}) => {
   return (
     <div className="">
-      <div className="text-5xl font-semibold text-center">
+      <div className="text-5xl pt-16 font-semibold text-center">
         SERP <span className="text-ar-fountain-blue">Analytics</span> For Search
         Professionals
       </div>
