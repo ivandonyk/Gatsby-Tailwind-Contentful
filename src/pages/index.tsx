@@ -5,16 +5,12 @@ import { graphql } from "gatsby";
 import HomepageHeader from "../components/HomepageHeader";
 import Navbar from "../components/Navbar";
 import CompanyLogos from "../components/CompanyLogos";
-import { ContentfulHomePage } from "../../graphql-types";
+import { HomepageQuery } from "../../graphql-types";
 
 import Connections1 from "../images/connections-1.svg"; // todo: fix this,it works but typescript doesn't like it
 
-type ContentfulHomePageProps = {
-  contentfulHomePage: ContentfulHomePage;
-};
-
 type IndexPageProps = {
-  data: ContentfulHomePageProps;
+  data: HomepageQuery;
 } & PageProps;
 
 export const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
@@ -76,7 +72,7 @@ const ConnectionItem = ({ color, text, number }: ConnectionItemProps) => {
 };
 
 export const query = graphql`
-  {
+  query Homepage {
     contentfulHomePage {
       header {
         title
